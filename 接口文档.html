@@ -1,0 +1,951 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<script language="JavaScript" src="./jquery-1.11.3.min.js"></script>
+<style>
+    a{color:#000;}
+    p{display:block;padding: 8px 15px;margin: 5px 10px 10px 10px;font-size: 12px;border: 1px solid #ddd;border-left-width: 6px;border-radius: 4px;background-color: #E8E8E8;font-family: Courier New;overflow: auto;}
+    .nav,div{padding: 8px 15px;margin: 5px 10px 10px 10px;font-size: 12px;border: 1px solid #ddd;border-left-width: 6px;border-radius: 4px;background-color: #f2f2f2;font-family: Courier New;overflow: auto;}
+    .nav{position: fixed;bottom:130px;right: 20px;}
+    .navp{padding: 1px;margin: 1px 2px 2px 2px;}
+    .navp a{text-decoration: inherit;}
+</style>
+<pre class="nav">
+   
+</pre> 
+<pre>
+<div>
+    <h2>[ok]注册-获取验证码</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=User&a=userGetCode (&phone=13719421111 &app=android)
+    安卓请求地址：http://dev.cc.com/api.php/User/userGetCode
+    请求方式：POST
+    请求参数：User/userGetCode
+    POST到服务器的json数据：
+    {
+        "phone"     : "13719421111",     //手机号码
+        "app"       : "android",         //访问设备：android,ios
+    }
+    成功返回：
+    {
+        "data": {},    //空字符串
+        "error": "0",   
+        "msg": "请求成功"   
+    }
+    失败返回：
+    {
+        "data": {},   //空字符串
+        "error": "10001",
+        "msg": "手机号不存在或格式不正确"
+    }
+</div>
+
+<div>
+    <h2>[ok]注册-提交手机号，验证码，密码</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=User&a=userReg&phone=13719421111&app=ios&password=123456&userType=1&mobileId=abcde&code=593704
+    安卓请求地址：http://dev.cc.com/api.php/User/userReg
+    请求方式：POST
+    请求参数：User/userReg
+    POST到服务器的json数据：
+    {
+        "phone"     : "13719421111",     //手机号码
+        "code"      : "593704",          //验证码
+        "app"       : "android",         //访问设备：android,ios
+        "password"  : "123456" ,         //密码长度6-12位（用户输入的密码不需要任何处理）        
+        "userType"  : "1" ,              //用户类型1-债权人,2-催债人
+        "mobileId"  : "sd45rf48"         //极光推送生成的唯一字符串
+    }
+
+    成功返回：
+    {
+        "data": {
+            "token":"",      //加密字符串，用作判断用户是否登陆
+            "userId":"1"     //用户ID
+            "userType": "1"  //用户类型                           
+        },
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求参数出错"
+    }
+</div>
+
+<div>
+    <h2>[ok]登录</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=User&a=userLogin (&phone=13543489194 &app=android &password=e10adc3949ba59abbe56e057f20f883e &mobileId=sd45rf48)
+    安卓请求地址：http://dev.cc.com/api.php/User/userLogin
+    请求方式：POST
+    请求参数：User/userLogin
+    POST到服务器的json数据：
+    {
+        "phone"     : "15692400000",  // 用户手机号 
+        "password"  : "123456",       // 密码(明文)
+        "app"       : "android"       // 访问设备：android,ios
+        "mobileId"  : "sd45rf48"      //极光推送生成的唯一字符串
+    }
+
+    成功返回：
+    {
+        "data": {
+            "token": "",    //MD5加密字符串，用作判断用户是否登陆
+            "userId": "1"   //用户ID 
+            "userType": "1" //用户类型               
+        },
+        "error": "0",
+        "msg": "请求成功"
+    }
+
+    失败返回：
+    {
+        "data": {},
+        "error": "10009",
+        "msg": "用户不存在"
+    }
+</div>
+
+<div>
+    <h2>[ok]忘记密码-获取验证码</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=User&a=userGetPassCode (&phone=13719421111 &app=ios)
+    安卓请求地址：http://dev.cc.com/api.php/User/userGetPassCode
+    请求方式：POST
+    请求参数：User/userGetPassCode
+
+    POST到服务器的json数据：
+    {
+        "phone": "15692400000", // 手机号码
+        "app":"android"         // 访问设备：android,ios
+    }
+    成功返回：
+    {
+        "data": {},
+        "error": "0",
+        "msg": "请求成功"
+    }
+
+    失败返回：
+    {
+        "data": {},
+        "error": "10009",
+        "msg": "用户不存在"
+    }
+</div>
+
+<div>
+    <h2>[ok]忘记密码</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=User&a=userGetPass (&phone=13719421111 &app=ios &trueName=张三 &cardId=4411574878 &code=593704)
+    安卓请求地址：http://dev.cc.com/api.php/User/userGetPass
+    请求方式：POST
+    请求参数：User/userGetPass
+
+    POST到服务器的json数据：
+    {
+        "phone": "15692400000",         // 手机号码
+        "trueName": "张三",             // 真实姓名
+        "cardId":"441283199001114345",  // 身份证号
+        "code"      : "123456",         // 验证码
+        "app":"android"                 // 访问设备：android,ios
+    }
+    成功返回：
+    {
+        "data": {},
+        "error": "0",
+        "msg": "请求成功"
+    }
+
+    失败返回：
+    {
+        "data": {},
+        "error": "10009",
+        "msg": "用户不存在"
+    }
+</div>
+
+<div>
+    <h2>[ok]修改密码</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Cuicui&a=editPassword(&userId=1&token=&oldPassword=123456&newPassword=a123456&confirmPassword=a123456&app=android)
+    安卓请求地址：http://dev.cc.com/api.php/Cuicui/editPassword
+    请求方式：POST
+    请求参数：Cuicui/editPassword
+    POST到服务器的json数据：
+    {
+        "userId": "1",          // 用户ID
+        "token": "",            // MD5加密字符串，用作判断用户是否登陆
+        "oldPassword":"",       // 原密码
+        "newPassword": "",      // 新密码
+        "confirmPassword": "",  // 确认新密码
+        "app":"android"         // 访问设备：android,ios
+    }
+    成功返回：
+    {
+        "data": {},
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10091",
+        "msg": "旧密码不正确"
+    }
+</div>
+
+<div>
+    <h2>[ok]首页</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Index&a=index
+    安卓请求地址：http://dev.cc.com/api.php/Index/index
+    请求方式：POST
+    请求参数：Index/index
+    POST到服务器的json数据：
+    {
+        '':''//不需参数
+    }
+    成功返回：
+    {
+        "data": {
+            'slide':[{'url':'url','img':'imgurl','title':'标题'}] //幻灯图
+            <s>'guide':'url'       //新手指引</s>
+            'guide':[{'url':'url','name':'新手指引'}]       //新手指引，催客宝典
+            'successTimes':'1'  //成功追回债权（笔）
+            'successMoney':'10' //追回金额（元）
+            'debtMoney':'10'    //债权总额（元）
+            'cuikeTimes':'1'    //催客（人）
+        },
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求异常，请联系管理员"
+    }
+</div>
+
+<div>
+    <h2>[ok]债权详情</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Debt&a=debtDetails (&zqId=1 &userId=19)
+    安卓请求地址：http://dev.cc.com/api.php/Debt/debtDetails
+    请求方式：POST
+    请求参数：Debt/debtDetails
+    POST到服务器的json数据：
+    {
+        "zqId": "1",         //债权ID
+        "userId": "19",      //当前登陆的用户ID,没登录者可不传
+    }
+    成功返回：
+    {
+        "data": {
+            "zqId" : "1",                   //债权Id
+            "zqUid" : "1",                  //债权人Id
+            "debtStatus":"1",               //1发布2委托3确认委托4催款成功5确认成功6撤单7催款失败
+            "weituo" :"1"                   //状态为2时 1当前登录者为催客且与债权有委托关系0什么关系都没
+            "jiedan" :"1"                   //状态为2时 1当前登录者为催客且与债权有接单申请关系0什么关系都没
+            "changeCk":"1"                  //更换催客1发起申请0没发起
+            "zqSn":"SN20151109114800001",   //项目编号
+            "zqName":"李*三",               //债权人
+            "zqphone":"",                   //债权人联系方式
+            "zqMoney":"",                   //债权金额
+            "commision":"4000元",           //佣金
+            "yuqiTime":"",                  //逾期时间
+            "zqAddress":"",                 //债权人所在地
+            "qzAddress":"",                 //欠债人所在地
+            "file":"[
+                    {"fileName":"借据"},
+                    {"fileName":"合同"}
+                    ]",       //拥有欠债人资料
+            "reason":"欠债",                //事由
+            "xieyiRead":""                  //协议在线阅读
+            "xieyiDown":""                                          //协议下载下载前弹窗提示用户打开密码为用户手机号
+
+
+            "weiyxList":"[{                 //我委托的催客 （debtStatus为2时候才有以下数据否则为空数组[]）
+                    "ckUid":"1",             //催客用户ID
+                    "ckName":"张*三",       //催客名字
+                    "isWeituo":"1"          //是否委托过的标识
+            }]",
+            "jieyxList":"[{                 //想接单的催客 （debtStatus为2时候才有以下数据否则为空数组[]）
+                    "ckUid":"1",            //催客用户ID
+                    "ckName":"张*三",       //催客名字
+                    "isWeituo":"1"          //是否委托过的标识
+            }]",
+                                            //以下8条数据催客信息（debtStatus为3时候催客和债权人达成协议否则为空字符串）
+            "ckUid": "1",                    //催客ID  
+            "ckName":"张*良",               //催客名称
+            "successMoney":"2000",          //追回总额
+            "successTimes":"3",             //成功次数
+            "xieyiTimes":"5",               //总数（达成协议数）
+            "ckPhone":"13800138000",        //催客联系方式
+            "ckAddress":"",                 //催客所在地址
+            "ckDes":"",                     //催客描述
+        },
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求异常，请联系管理员"
+    }
+    <p>
+        debtStatus==1|2  等待接单
+        debtStatus==3|4  进行中
+        debtStatus==5    成功
+        debtStatus==7    失败
+        debtStatus==6    已撤销
+    </p>
+    <p>
+        <b>催客身份userId</b> 
+        if(jiedan==0 && (debtStatus==1 || debtStaus==2)){
+            显示接单按钮//催客可以对该债权进行接单操作
+        }
+        if(jiedan==1 && debtStatus==2){
+            显示撤销接单按钮//催客已经对该债权申请了接单操作
+        }
+        if(weituo==1 && debtStatus==2){
+            显示确认接单按钮//债权人委托了当前催客
+        }
+        if(debtStatus==3 && ckUid==userId){
+            显示查看合同按钮  失败按钮 成功按钮//催客是该债权的催款催客
+        }
+        if(debtStatus==3 && ckUid==userId && changeCk==1){
+            显示不同意更换按钮  同意更换按钮 //债权人发起更换催客
+        }
+        if(debtStatus==7 && ckUid==userId){
+            显示查看合同按钮//当前催客确认了催款失败
+        }
+        if(debtStatus==4 && ckUid==userId){
+            显示查看合同按钮//当前催客确认了催款成功
+        }
+        if(debtStatus==5 && ckUid==userId){
+            显示查看合同按钮//当前催客和债权人都确认了催款成功
+        }
+    </p>
+    <p>
+        <b>债权人身份userId</b>
+        if(zqUid==userId && (debtStatus==1 || debtStatus==2)){
+            显示找催客按钮
+        }
+        if(zqUid==userId && debtStatus==2){
+            显示想接单催客列表 我委托的催客列表
+        }
+        if(zqUid==userId && debtStatus==3){
+            显示进行中文字 查看合同按钮 更换催客按钮
+        }
+        if(zqUid==userId && debtStatus==4){
+            显示查看合同按钮  失败按钮 成功按钮
+        }
+        if(zqUid==userId && debtStatus==5){
+            显示查看合同按钮
+        }
+        if(zqUid==userId && debtStatus==7){
+            显示查看合同按钮
+        }
+    </p>
+</div>
+
+<div>
+    <h2>[ok]债权详情相关请求</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Debt&a=wishStatus&userId=1&token=&app=ios&zqId=2&ckUid=2&wishStatus=1
+    安卓请求地址：http://dev.cc.com/api.php/Debt/wishStatus
+    请求方式：POST
+    请求参数：Debt/wishStatus
+    POST到服务器的json数据：//本接口比较特殊，带*标识为必须参数
+    {
+        "userId"    : "1",          //*登录者用户ID
+        "token"     : "",           //*加密字符串，用作判断用户是否登陆
+        "app"       : "ios",        //*来源
+        "zqId"      : "2",          //*债权ID
+        "ckUid"     : "2",          //催客Id | 债权人委托催客[必填]、债权人撤销委托[必填]、债权人确认委托[必填]、其余操作为空
+        "wishStatus": "1"           //*要变成的状态：1催客撤销接单|债权人撤销委托、
+                                                     2催客申请接单|催客同意更换|债权人委托催客|债权人更换催客|债权人重找催客、
+                                                     3催客确认接单|催客不同意更换|债权人确认委托|债权人确认未完成、
+                                                     4催客催款成功
+                                                     5债权人确认成功
+                                                     6债权人撤销债权
+                                                     7催客催款失败
+    }
+    成功返回：
+    {
+        "data": {},
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求异常，请联系管理员"
+    }
+</div>
+
+<div>
+    <h2>[ok]催客</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Ck&a=ckList [ &page=1 &province=19 &city=1601 ]
+    安卓请求地址：http://dev.cc.com/api.php/Ck/ckList
+    请求方式：POST
+    请求参数：Ck/ckList
+    POST到服务器的json数据：
+    {
+        "page": "1",         // 页码
+        "province": "19",    //广东省
+        "city":"1601"        //广州  
+    }
+    成功返回：
+    {
+        "data": {
+            "province": "19",   //广东省
+            "city":"1601"       //广州 
+            "total":"1",        //当前查询条件债权数据总数
+            "pageSize":"10",    //每页所查询条数10条
+            "page":"1",         //当前查询条件请求页码
+            "ckList":"[{
+                'ckUid': '1'           //催客ID
+                'ckCity': '广东 广州'  //催客所在地
+                'ckName':'张*良'       //催客名称
+                'successMoney':'2000'  //追回总额
+                'successTimes':'3'     //成功次数
+                'successPercent':'20%' //成功率
+                'xieyiTimes':'5'       //总数（达成协议数）
+                'phone':'13800138000'  //（判断不为空才显示）联系方式
+                'des':'专业催款'       //简介
+
+            }]"
+        },
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求异常，请联系管理员"
+    }
+</div>
+
+<div>
+    <h2>[ok]我的催催</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Cuicui&a=myCuicui ( &userId=1 )
+    安卓请求地址：http://dev.cc.com/api.php/Cuicui/myCuicui
+    请求方式：POST
+    请求参数：Cuicui/myCuicui
+    POST到服务器的json数据：
+    {
+        "userId": "1",                  // 页码 
+        "token": "asds4535dfas45dsada", //加密字符串，用作判断用户是否登陆
+    }
+    成功返回：
+    {
+        "data": {
+            "userId":"1"                //用户Id
+            "userName":"张三",          //用户名称，如果为空则说明用户还没实名认证（显示用户名处安卓需要判断为空则使用手机号码展示）
+            "cardId":"4441112***1114545",      //用户身份证号
+            "phone":"13800138000",      //用户号码
+            "userType":"1",             //用户类型1-债权人,2-催客
+            "province":"19"             //省ID 
+            "city":"19"                 //市ID
+            "userAddress":"广东 广州",  //用户所在地（字符串"广东 广州"的格式返回）
+            "des":"",                   //催客描述userType为2才有
+        },
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10050",
+        "msg": "我的催催所需参数不合法"
+    }
+</div>
+
+<div>
+    <h2>[ok]债权列表</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Debt&a=debtList [ &page=1 &province=19 &city=1601 ]
+    安卓请求地址：http://dev.cc.com/api.php/Debt/debtList
+    请求方式：POST
+    请求参数：Debt/debtList
+    POST到服务器的json数据：
+    {
+        "page": "1",         // 页码
+        "province": "19",    //广东省
+        "city":"1601"        //广州  
+    }
+    成功返回：
+    {
+        "data": {
+            "province": "19",           //广东省
+            "city":"1601"               //广州 
+            "total":"1",                //当前查询条件债权数据总数
+            "pageSize":"10",            //每页所查询条数10条
+            "page":"1",                 //当前查询条件请求页码
+            "debtList":"[{
+                'zqId': '1'             //债权ID
+                'zqMoney':'2000'        //债权金额
+                'commision':'20%(400元)'//佣金
+                'status':'2'            //1等待接单2进行中3已完成状态4催款失败
+                'statusName':'进行中'   //状态名
+                'trueName':'张*良'      //名称
+                'reason':'业务来往'     //事由
+                'yuqiTime':'2015/10/10' //债权金额
+            }]" 
+        },
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求异常，请联系管理员"
+    }
+</div>
+
+<div>
+    <h2>[ok]基础数据源</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Api&a=defaultData
+    安卓请求地址：http://dev.cc.com/api.php/Api/defaultData
+    请求方式：POST
+    请求参数：Api/defaultData
+    POST到服务器的json数据：
+    {
+        "": "",         //无需参数 
+    }
+    成功返回：
+    {
+        "data": {
+            'provinceList':[{
+                "id":"",    //省id
+                "name":"",  //省名称
+                "pid":""    //上级ID
+                }],
+            'cityList'{
+                "id":"",    //市id
+                "name":"",  //市名称
+                "pid":""    //上级ID
+                },
+            'fileList'{//拥有催债资料（凭据）
+                "id":"",    //id
+                "name":"",  //名称
+                },
+            'reasonList'{//欠债事由
+                "id":"",    //id
+                "name":"",  //名称
+                }
+            'about':"url",  //关于我们访问地址
+            'xieyi':"url"   //用户协议访问地址
+            
+        },
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求异常，请联系管理员"
+    }
+</div>
+
+<div>
+    <h2>[ok]债权添加</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Debt&a=debtAdd&userId=1&token=&app=ios&zqMoney=200000&commision=5 &yuqiTime=2015_11_11&qzProvince=19&qzCity=1607&file=1,2,3&reason=2
+    安卓请求地址：http://dev.cc.com/api.php/Debt/debtAdd
+    请求方式：POST
+    请求参数：Debt/debtAdd
+    POST到服务器的json数据：
+    {
+        "userId"    : "1",          //用户ID
+        "token"     : "",           //加密字符串，用作判断用户是否登陆
+        "app"       : "ios",        //来源
+        "zqMoney"   : "200000",     //债权金额
+        "commision" : "5",          //佣金百分比允许范围1-50
+        "yuqiTime"  : "2015_11_11", //逾期时间格式要求  2015_11_11
+        "qzProvince": "19",         //欠债人所在省
+        "qzCity"    : "1607",       //欠债人所在市
+        "file"      : "1,2,3",      //拥有欠债资料格式要求  1,2,3
+        "reason"    : "1",          //欠债事由,事由号
+    }
+    成功返回：
+    {
+        "data": {},
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求异常，请联系管理员"
+    }
+</div>
+
+<div>
+    <h2>[ok]获取当前登陆债权人的债权(用于债权人找催客弹出的可选列表)</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Debt&a=userDebt&userId=1&token=
+    安卓请求地址：http://dev.cc.com/api.php/Debt/userDebt
+    请求方式：POST
+    请求参数：Debt/userDebt
+    POST到服务器的json数据：
+    {
+        "userId"    : "1",          //登录者用户ID
+        "token"     : "",           //加密字符串，用作判断用户是否登陆
+    }
+    成功返回：
+    {
+        "data":{
+            zqData:"[{
+                "zqId"     : "1",                 //债权ID
+                "zqSn"     : "ZQ201511110000001", //债权编号
+                "zqMoney"  : "20000",             //债权金额
+            }]"
+        },
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求异常，请联系管理员"
+    }
+</div>
+
+<div>
+    <h2>[ok]用户实名认证</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Cuicui&a=trueName(&userId=1&token=&app=ios&trueName=李四&cardId=632323198307254328&province=1&city=38&des=测试)
+    安卓请求地址：http://dev.cc.com/api.php/Cuicui/trueName
+    请求方式：POST
+    请求参数：Cuicui/trueName
+    POST到服务器的json数据：
+    {
+        "userId"    : "1",                  //登录者用户ID
+        "token"     : "",                   //加密字符串，用作判断用户是否登陆
+        "app"       : "ios",                //来源
+        "trueName"  : "张三",               //真实姓名
+        "cardId"    : "530721199112107393", //身份证号
+        "province"  : "1",                  //省份
+        "city"      : "33",                 //城市
+        "des"       : ""                    //催客描述，用户状态为2的需要填写，默认为空
+    }
+    成功返回：
+    {
+        "data": {},
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求异常，请联系管理员"
+    }
+</div>
+
+<div>
+    <h2>[ok]版本更新</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=api&a=version&version=0.0.0
+    安卓请求地址：http://dev.cc.com/api.php/Api/version
+    请求方式：POST
+    请求参数：Cuicui/version
+    POST到服务器的json数据：
+    { 
+        "version"    : "0.0",    //手机当前安装的版本只需要名字不需要后缀(线上有暂时有一个0.0.apk提供测试)
+    }
+    成功返回：
+    {
+        "data": {
+            "download" : "url",  //下载地址
+            "version"  : "0.0"   //当前版本
+            "forced"   : "1"     //1强制更新0不强制更新  是否强制由文件名决定 1.0_forced.apk[强] 1.0.apk[不强]
+            "fversion" : "0.0"   //必须强制更新版本1.0_forced_0.2.apk 0.2之前全部需要强制更新
+            "tips"     : "检测到新版本，是否更新"
+        },
+        "error": "0",
+        "msg": "请求成功"//有版本需要更新
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求异常，请联系管理员"//无版本需要更新
+    }
+</div>
+
+<div>
+    <h2>[ok]我的债权，我接的单</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Cuicui&a=myZq
+    安卓请求地址：http://dev.cc.com/api.php/Cuicui/myZq
+    请求方式：POST
+    请求参数：Cuicui/myZq
+    POST到服务器的json数据：
+    { 
+        "userId"    :  '1' //用户ID
+        "token"     :  "", //加密字符串，用作判断用户是否登陆
+        "status"    :  '1',//请求标识 1等待接单2进行中3已完成4催款失败
+        "page"      :  "1",// 页码
+    }
+    成功返回：
+    {
+        "data": {
+            "total":"1",                //当前查询条件债权数据总数
+            "pageSize":"10",            //每页所查询条数10条
+            "page":"1",                 //当前查询条件请求页码
+            "debtList":"[{
+                'zqId': '1'             //债权ID
+                'zqSn': 'ZQ201501111'   //债权编号
+                'zqMoney':'2000'        //债权金额
+                'commision':'20%(400元)'//佣金
+                'status':'2'            //1等待接单2进行中3已完成状态4催款失败
+                'statusName':'进行中'   //状态名
+                <s>'trueName':'张*良'      //名称</s>
+                <s>'reason':'业务来往'     //事由</s>
+                <s>'yuqiTime':'2015/10/10' //债权金额</s>
+            }]" 
+        },
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求异常，请联系管理员"
+    }
+</div>
+<div>
+    <h2>[ok]我的消息</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Cuicui&a=myMsg
+    安卓请求地址：http://dev.cc.com/api.php/Cuicui/myMsg
+    请求方式：POST
+    请求参数：Cuicui/myMsg
+    POST到服务器的json数据：
+    { 
+        "userId"    :  '1' //用户ID
+        "token"     :  "", //加密字符串，用作判断用户是否登陆
+        "page"      :  "1",// 页码
+    }
+    成功返回：
+    {
+        "data": {
+            "total":"1",                //当前查询条件债权数据总数
+            "pageSize":"10",            //每页所查询条数10条
+            "page":"1",                 //当前查询条件请求页码
+            "msgList":"[{
+                'time': '12月11日 周一 12:12'  //时间字符串
+                'msg' : '你的账号在新设备登陆' //信息内容
+            }]" 
+        },
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求异常，请联系管理员"
+    }
+</div>
+<div>
+    <h2>[ok]催客详情</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Ck&a=ckDetails&ckUid=1
+    安卓请求地址：http://dev.cc.com/api.php/Ck/ckDetails
+    请求方式：POST
+    请求参数：Ck/ckDetails
+    POST到服务器的json数据：
+    {
+        "ckUid": "1",         //催客Id
+    }
+    成功返回：
+    {
+        "data": {
+            'ckUid': '1'           //催客ID
+            'ckCity': '广东 广州'  //催客所在地
+            'ckName':'张*良'       //催客名称
+            'successMoney':'2000'  //追回总额
+            'successTimes':'3'     //成功次数
+            'successPercent':'20%' //成功率
+            'xieyiTimes':'5'       //总数（达成协议数）
+            'phone':'13800138000'  //（判断不为空才显示）联系方式
+            'des':'专业催款'       //简介
+        },
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求异常，请联系管理员"
+    }
+</div>
+<div>
+    <h2>[ok]退出登录</h2>
+    浏览器访问地址：http://dev.cc.com/api.php?m=Api&c=Cuicui&a=userLogout
+    安卓请求地址：http://dev.cc.com/api.php/Cuicui/userLogout
+    请求方式：POST
+    请求参数：Cuicui/userLogout
+    POST到服务器的json数据：
+    { 
+        "userId"    :  '1' //用户ID
+        "token"     :  "", //加密字符串，用作判断用户是否登陆
+    }
+    成功返回：
+    {
+        "data":'',
+        "error": "0",
+        "msg": "请求成功"
+    }
+    失败返回：
+    {
+        "data": {},
+        "error": "10000",
+        "msg": "请求异常，请联系管理员"
+    }
+</div>
+<div>
+    <h2>消息推送说明</h2>
+    1、登录（与前一次的手机唯一码不一样）
+    2、债权人申请更换催客
+    3、债权人委托催客
+    4、债权人确认委托
+    5、债权人确认未完成
+    6、债权人确认成功
+    7、催客撤销接单
+    8、催客同意更换催客
+    9、催客接单
+    10、催客不同意更换催客
+    11、催客确认接单
+    12、催客确认催款成功
+    13、催客催款失败
+
+    登录  
+    <b>ios</b>
+    {
+        "platform": [
+            "ios"
+        ],
+        "audience": {
+            "registration_id": [
+                "sd45rf41"
+            ]
+        },
+        "notification": {
+            "ios": {
+                "alert": "您的账号在另一设备上登录",
+                "sound": "happy",
+                "badge": "+1",
+                "content-available": 1
+            }
+        },
+        "message": {
+            "msg_content": "登录设备异常",
+            "title": "通知",
+            "content_type": "1",
+            "extras": []
+        },
+        "options": {
+            "sendno": 15695,
+            "apns_production": false
+        }
+    }
+    <b>android</b>
+    {
+        "platform": [
+            "android"
+        ],
+        "audience": {
+            "registration_id": [
+                "sd45rf41"
+            ]
+        },
+        "notification": {
+            "android": {
+                "alert": "您的账号在另一设备上登录"
+            }
+        },
+        "message": {
+            "msg_content": "登录设备异常",
+            "title": "通知",
+            "content_type": "1",
+            "extras": []
+        },
+        "options": {
+            "sendno": 38238,
+            "apns_production": false
+        }
+    }
+    
+
+
+
+    债权相关的
+    <b>ios</b>
+    {
+        "platform": [
+            "ios"
+        ],
+        "audience": {
+            "registration_id": [
+                "asdasdss22"
+            ]
+        },
+        "notification": {
+            "ios": {
+                "alert": "[ZQ20151123000004]债权人委托您为本债权催客",
+                "sound": "happy",
+                "badge": "+1",
+                "content-available": 1
+            }
+        },
+        "message": {
+            "msg_content": "委托催客",
+            "title": "通知",
+            "content_type": "2",
+            "extras": {
+                "zqId": 4
+            }
+        },
+        "options": {
+            "sendno": 68729,
+            "apns_production": false
+        }
+    }
+    <b>android</b>
+    {
+        "platform": [
+            "android"
+        ],
+        "audience": {
+            "registration_id": [
+                "cdfsdf443"
+            ]
+        },
+        "notification": {
+            "android": {
+                "alert": "[ZQ20151123000004]债权人委托您为本债权催客"
+            }
+        },
+        "message": {
+            "msg_content": "委托催客",
+            "title": "通知",
+            "content_type": "2",
+            "extras": {
+                "zqId": 4
+            }
+        },
+        "options": {
+            "sendno": 76465,
+            "apns_production": false
+        }
+    }    
+</div>
+<script>
+    $(document).ready(function(){
+        $('h2').each(function(){
+            var name = $(this).html();
+            $('.nav').append('<p class="navp"><a href="#'+name+'">'+name+'</a></p>');
+            $(this).parent('div').attr('id',name);
+        });
+    });
+</script>
