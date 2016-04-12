@@ -1,0 +1,406 @@
+<pre>
+数值型例子:
+创建整形表
+create table test(
+ 	num tinyint,
+ 	unum tinyint unsigned
+)engine mysiam charset utf8;
+
+
+增减填充字段
+alter table test
+add sn tinyint(5)  zerofill;
+
+
+M宽度例子
+alter table test 
+add sx tinyint(1);
+
+
+
+
+小数型例子:
+create table t3(
+	salary float(5,2)
+);
+
+create table t4(
+	f  float(9,2),
+	d  decimal(9,2)
+);
+
+
+字符串型
+create table t5(
+	n1 char(10),
+	n2 varchar(10)
+);
+
+insert into t5 values (' hello ',' hello ');
+
+select concat('!',n1,'!'),concat('!',n2,'!') from t5;
+
+set names gbk;
+insert into t5 (n1) values ('中华人民共和国万万岁');
+
+
+create table t6(
+	tx text
+);
+
+insert into t6 values('aaaa bbbb');
+
+
+
+create table t7(
+	gender enum('男','女')
+
+);
+
+insert into t7 values('男');
+
+insert into t7 values('女');
+
+
+
+日期时间类型
+create table t8(
+	ya year,
+	dt date,
+	tm time,
+	dttm datetime
+);
+
+
+insert into t8 (ya) values (1901);
+
+insert into t8 (ya) values (95);
+
+insert into t8 (ya) values (56);
+
+insert into t8 (dt) values ('1990-12-23');
+
+insert into t8 (tm) values ('18:23:45');
+
+insert into t8 (dttm) values ('1234-12-25 23:24:56');
+
+
+create table t9(
+	id int,
+	ts timestamp
+);
+
+insert into t9 (id) values (1);
+
+
+列的默认值
+create table t10(
+	id int not null default 0,
+	name char(10) not null default ''
+
+);
+
+
+insert into t10 values (1,'lisi');
+
+insert into t10 (id) values (1); 
+
+
+
+主键与自增
+create table t11(
+	id int primary key,
+	name char(2)
+
+);
+
+create table t12(
+	id int,
+	name char(2),
+	primary key(id)
+
+);
+
+
+create table t14(
+	id int primary key auto_increment
+
+);
+
+
+综合建表案例
+create table users(
+	id int unsigned primary key auto_increment,
+	gender tinyint not null default 0,
+	weight tinyint unsigned not null default 0,
+	Birth date not null default 0,
+	Salary decimal(8,2) not null default 0,
+	lastlogin int unsigned not null default 0
+)engine myisam charset utf8;
+
+
+create table users_info(
+	username char(20) not null default '',
+	intro varchar(1500) not null default ''
+)engine myisam charset utf8;
+
+
+列的增删改
+增加列
+alter table users
+add height tinyint unsigned not null default 0;
+
+删除列
+alter table users 
+drop column height;
+
+增加列在其他列后
+alter table users
+add height tinyint unsigned not null default 0 after weight;
+
+更改列名称和和属性
+alter table users
+change height shenggao smallint;
+
+更改列属性
+alter table users
+modify shenggao tinyint not null default 0;
+
+
+视图 view
+创建视图
+create view vgoods as select goods_id,goods_name,(shop_price-market_price) as sheng from goods;
+
+
+视图algorithm
+create view v4 as select goods_id,goods_name,shop_price from goods;
+
+语句合并
+create algorithm=merge view v7 as select goods_id,goods_name from goods;
+
+形成临时表
+create algorithm=temptable view v8 as select goods_id,goods_name from goods;
+
+
+常用表管理语句
+查看表
+desc goods;
+
+查看视图
+desc vgoods;
+
+删除表
+drop table tmp;
+
+删除视图
+drop view v4;
+
+查看建表过程
+show create table  goods;
+
+
+查看视图过程
+show create view  vgoods;
+
+查看所有表状态
+show table status;
+show table status \G;
+
+查看单一表状态
+show table status where name='goods';
+show table status where name='goods' \G;
+
+改表名
+rename table goods to goodsgoods;
+
+
+清空表的数据
+truncate t11;
+
+
+
+
+事务概念
+create table account(
+	id int,
+	name char(10),
+	money int
+)engine innodb charset utf8;
+
+insert into account values ('1','zhangsan',5000);
+insert into account values ('2','lisi',4000);
+
+事务开始
+start transaction;
+
+select * from account;
+update account set money=money+500 where id=2;
+update account set money=money-500 where id=1;
+
+commit;
+事务结束
+
+
+事务开始
+start transaction;
+
+select * from account;
+update account set money=money+500 where id=2;
+update account set money=money-500 where id=1;
+
+rollback;
+事务失败回滚
+
+
+字符集与乱码问题
+show variables like '%charact%';
+
+set character_set_client=utf8;   接收为utf8;
+set character_set_client=gbk;   接收为gbk;
+
+
+set character_set_results=utf8;   返回结果为utf8;
+set character_set_results=gbk;   返回结果为gbk;
+
+set character_set_connection=gbk;   返回结果为gbk;
+set character_set_connection=utf8;   返回结果为utf8;
+
+set names gbk;   统一设置为gbk;
+
+
+having练习
+select addtime as dd from deayou_borrow_tender having dd < '1424932005';
+
+select name,count(score < 60) as gk,avg(score) as pj
+from result group by name
+having gk>=2;
+
+group练习
+select cat_id,avg(shop_price) from goods group by cat_id;
+
+order by
+查找cat_id升序后，同一个cat_id里面按价格降序显示
+select * from goods order by cat_id asc,shop_price desc
+
+
+where型子查询
+不用order by得出的最新产品
+select goods_id,goods_name from goods where goods_id=(select max(goods_id) from goods limit 1); 
+
+查找每一个栏目下最新产品的产品名称，栏目id，产品id
+select cat_id,goods_id,goods_name from goods where goods_id in(select max(goods_id) from goods GROUP BY cat_id);
+
+from型子查询
+查找每一个栏目下最新产品的产品名称，栏目id，产品id
+select goods_id,goods_name,cat_id from (select * from goods order by cat_id asc,goods_id desc) as tmp group by cat_id;
+
+exists型子查询
+查找有商品的商品类型
+select * from category c where EXISTS(select * from goods g where c.cat_id=g.cat_id);
+
+union用法
+查找商品类型为2和4，然后并起来
+select goods_id,cat_id,goods_name from goods where cat_id=2 union select goods_id,cat_id,goods_name from goods where cat_id=4
+
+union
+union的语句必须满足1个条件，各语句取出的列数相同
+列名称未必要一致，列名称会使用第1条sql的名称为准
+注意:使用union时,完全相等的行，将会被合并。
+合并是比较耗时的操作。
+一般不让union进行合并，使用union all可以避免合并。
+
+讨论:union的字句中，不用写order by,
+sql合并得到的总的结果，可以order by,字句order by失去意义。
+
+select * from a union all select * from b
+
+select id,sum(num) from (select * from a union all select * from b) as tmp group by id;
+
+
+索引概念
+MyISAM引擎,mysql文件夹data里面是放表，后缀MYD是表，MYI是索引
+索引提高了查询速度，降低了增删改的速度。
+一般在查询频率的列上加，而且在重复低列上加效果更好。
+
+key 普通索引
+unique key 唯一索引
+primary key 主键索引
+fulltext	全文索引(中文环境下，全文索引无效，要分词+索引，一般用第三方解决方案，如sphinx)
+
+多列索引，就是把2列或多列的值，看成一个整体，然后建索引。
+冗余索引，就是在某个列上，可能存在多个索引，比如(xing,ming),(ming)
+
+create table t16(
+	name char(10),
+	email char(20),
+	key name(name),
+	unique key email(email)
+
+);
+
+
+insert into t16 values ('lisi','185944345@aa.com');
+insert into t16 values ('lisi','185944345@aa.com');
+
+
+create table t17(
+	id int,
+	name char(10),
+	email char(20),
+	key name(name),	 //普通索引
+	unique key email(email),	//唯一索引
+	primary key(id)       //主键索引
+);
+
+
+建email索引只取索引10个字符
+create table t17(
+	id int,
+	name char(10),
+	email char(20),
+	key name(name),
+	unique key email(email(10)),
+	primary key(id)
+
+);
+
+
+create table t19(
+ 	xing char(2),
+ 	ming char(10),
+ 	key xm(xing,ming)
+
+);
+
+
+show index from t19 \G;
+
+
+create table t20(
+ 	xing char(2),
+ 	ming char(10),
+ 	key xm(xing,ming),
+	key ming(ming)
+);
+多列索引，索引是左前缀才能发挥作用。
+
+操作索引
+查看t20表的索引
+show index from t20
+
+删除非主键索引
+alter table t20 drop index ming
+
+删除主键索引
+alter table t20 drop PRIMARY key
+
+建立索引
+普通索引
+alter table t20 add index haha(xing,ming)
+
+唯一索引
+alter table t20 add unique aa(xing,ming)
+
+主键索引
+alter table t20 add PRIMARY key(xing,ming)
+</pre>
