@@ -1,6 +1,7 @@
-![](./image/fXieYi.png)
-<br/><br/>
-![](./image/fXieYi.png)
+![](./image/fXieYi.png)  
+
+![](./image/fXieYi.png)  
+
 #HTTP请求信息和响应信息的格式
 ###请求:
 1. 请求行
@@ -11,8 +12,7 @@
 ###请求行又分3部分:
 1. 请求方法 请求路径 所用的协议
 2. 请求方法:GET,POST,PUT,DELETE,TRACE,OPTIONS
-3. 所用的协议：目前一般是HTTP/1.1, 0.9,1.0已经基本不用
+3. 所用的协议：目前一般是HTTP/1.1, 0.9,1.0已经基本不用  
 
-<br/>
 ![](./image/tXieYi.png)
 
