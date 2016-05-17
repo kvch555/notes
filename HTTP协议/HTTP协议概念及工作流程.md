@@ -2,11 +2,11 @@
 <br/><br/>
 ![](./image/fXieYi.png)
 #HTTP请求信息和响应信息的格式
-##<span class="wenzi">请求:</span>
-1. <span class="wenzi">请求行</span>
-2. <span class="wenzi">请求头信息</span>
-3. <span class="wenzi">请求主体信息（可以没有）</span>
-4. <span class="wenzi">头信息结束后主体信息要空一行</span>
+###请求:
+1. 请求行
+2. 请求头信息
+3. 请求主体信息（可以没有）
+4. 头信息结束后主体信息要空一行
 
 ###请求行又分3部分:
 1. 请求方法 请求路径 所用的协议
