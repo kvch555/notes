@@ -1,10 +1,7 @@
-<style type="text/css">
-	.wenzi{color:#3F00FF;}
-</style>
 ![](./image/fXieYi.png)
 <br/><br/>
 ![](./image/fXieYi.png)
-#<span class="wenzi">HTTP请求信息和响应信息的格式</span>
+#<span style="color:#3F00FF;">HTTP请求信息和响应信息的格式</span>
 ###<span class="wenzi">请求:</span>
 1. <span class="wenzi">请求行</span>
 2. <span class="wenzi">请求头信息</span>
