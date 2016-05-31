@@ -209,8 +209,8 @@ Mysqld --skip-grant-tables
 即可用修改后的新密码登陆.
 </pre>
 <h5>增删改查基本语法学习</h5>
-<p>增: insert 
-Insert 3问: <br />
+<h4>增: insert </h4>
+<p>Insert 3问: <br />
 1. 插入哪张表? <br />
 2. 插入哪几列?<br />
 3. 这几列分别插入什么值?  
@@ -534,12 +534,14 @@ create table 表名 (
 <p>一张表,创建完毕,有了N列.<br />
 之后还有可能要增加或删除或修改列   
 </p>
-<p>Alter table 表名 add 列名称 列类型 列参数;  [加的列在表的最后]
+<pre>
+Alter table 表名 add 列名称 列类型 列参数;  [加的列在表的最后]
 例: alter table m1 add birth date not null default '0000-00-00';
 Alter table 表名 add 列名称 列类型 列参数 after 某列 [把新列加在某列后]
-例: alter table m1 add gender char(1) not null default '' after username;</p>
-<p>Alter table 表名 add 列名称 列类型 列参数 first [把新列加在最前面]
-例: alter table m1 add pid int not null default 0 first;</p>
+例: alter table m1 add gender char(1) not null default '' after username;
+Alter table 表名 add 列名称 列类型 列参数 first [把新列加在最前面]
+例: alter table m1 add pid int not null default 0 first;
+</pre>
 <p>删除列:
 Alter table 表名  drop 列名</p>
 <p>修改列类型:</p>
