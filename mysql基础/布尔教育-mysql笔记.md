@@ -380,23 +380,23 @@ Zerofill: 代表0填充, 即: 如果该数字不足参数M位, 则自动补0, �
 </pre>
 <h5>小数型</h5>
 
-Float(M,D),decimal(M,D)  
-M叫"精度" ---->代表"总位数",而D是"标度",代表小数位.(小数右边的位数)  
+Float(M,D),decimal(M,D)  <br/>
+M叫"精度" ---->代表"总位数",而D是"标度",代表小数位.(小数右边的位数)   <br/> <br/>
 
 
-浮点数占多大的空间呢  
-答：　float　能存10＾３８　，10^-38  
-如果M<=24, 点4个字节,否则占8字节  
+浮点数占多大的空间呢   <br/>
+答：　float　能存10＾３８　，10^-38 <br/> 
+如果M<=24, 点4个字节,否则占8字节  <br/><br/>
 
-用来表示数据中的小数,除了float---浮点.  
-还有一种叫定点decimal,定点是把整数部分, 和小数部分,分开存储的.  
-比float精确,他的长度是变化的.  
+用来表示数据中的小数,除了float---浮点.  <br/>
+还有一种叫定点decimal,定点是把整数部分, 和小数部分,分开存储的.<br/>  
+比float精确,他的长度是变化的.  <br/><br/>
 
-空间上的区别:  
-Float(M,D), M<=24, 4个字节, 24 <M <=53, 8个字节
-Decimal () ,变长字节.
+空间上的区别:  <br/>
+Float(M,D), M<=24, 4个字节, 24 <M <=53, 8个字节<br/>
+Decimal () ,变长字节.<br/><br/>
 
-区别: decimal比float精度更高, 适合存储货币等要求精确的数字,
+区别: decimal比float精度更高, 适合存储货币等要求精确的数字,<br/>
 
 <p>见下例:<br />
 <br/>
@@ -534,8 +534,9 @@ create table 表名 (
 <p>一张表,创建完毕,有了N列.<br />
 之后还有可能要增加或删除或修改列   
 </p>
-<pre>
+
 Alter table 表名 add 列名称 列类型 列参数;  [加的列在表的最后]
+<pre>
 例: alter table m1 add birth date not null default '0000-00-00';
 Alter table 表名 add 列名称 列类型 列参数 after 某列 [把新列加在某列后]
 例: alter table m1 add gender char(1) not null default '' after username;
