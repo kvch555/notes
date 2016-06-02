@@ -1,6 +1,6 @@
 <p><img src="./image/fXieYi.png" />  
 </p>
-<p><img src="./image/fXieYi.png" />  
+<p><img src="./image/sXieYi.png" />  
 </p>
 <h1>HTTP请求信息和响应信息的格式</h1>
 <h3>请求:</h3>
