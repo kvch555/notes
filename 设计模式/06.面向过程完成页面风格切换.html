@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>面向过程页面风格切换</title>
+</head>
+<style type="text/css">
+	div{
+		margin: 10px;
+		width: 500px;
+		height: 200px;
+		border:1px solid red;
+	}
+
+	#content{
+
+	}
+
+	#ad{
+
+	}
+
+</style>
+<script>
+	function t(){
+		var sel=document.getElementsByTagName('select')[0];
+		//alert(sel.value);
+		if(sel.value=='male'){
+			document.getElementById('content').style.backgroundColor='gray';
+			document.getElementById('ad').innerHTML='汽车';
+		}else if(sel.value=='female'){
+			document.getElementById('content').style.backgroundColor='pink';
+			document.getElementById('ad').innerHTML='减肥';
+		}
+	}
+
+		/*观察上述代码，如果新增了一个study区，在切换时，学习内容也要随之切换，那么，就需要改动T函数，对于修改又开放了
+		思考---如果需要新监听footer区，如果能不改原来的代码，而只增加*/
+
+</script>
+<body>	 
+	<h1>面向过程，不用模式来切换</h1>
+	<select name="" id="" onchange="t();">
+		<option value="male">男式风格</option>
+		<option value="female">女式风格</option>
+	</select>
+
+	<div id="content">我是内容</div>
+	<div id="ad">我是广告</div>	
+	<div id="study">问</div>
+</body>
+</html>
