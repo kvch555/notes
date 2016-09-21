@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>面向过程页面风格切换</title>
+</head>
+<style type="text/css">
+	div{
+		margin: 10px;
+		width: 500px;
+		height: 200px;
+		border:1px solid red;
+	}
+
+	#content{
+
+	}
+
+	#ad{
+
+	}
+
+</style>
+<body>	 
+	<h1>观察者模式来切换</h1>
+	<select name="" id="">
+		<option value="male">男式风格</option>
+		<option value="female">女式风格</option>
+	</select>
+	<input type="button" value="观察尾部了" onclick="t1();">
+	<input type="button" value="不观察尾部了" onclick="t2();">
+	<div id="content">我是内容</div>
+	<div id="ad">我是广告</div>	
+	<div id="study">学习</div>
+</body>
+<script>
+	var sel=document.getElementsByTagName('select')[0];
+	sel.observers={};
+	sel.attach=function(key,obj){
+		this.observers[key]=obj;
+	}
+	sel.detach=function(key){
+		delete this.observers[key];
+	}
+
+	sel.onchange = sel.notify=function(){
+		for(var key in this.observers){
+			this.observers[key].update(this);
+		}
+	}
+	
+	//客户端
+	var content= document.getElementById('content');
+	var ad=document.getElementById('ad');
+
+	content.update=function(observee){
+		if(observee.value=='male'){
+			this.style.backgroundColor='gray';
+		}else if(observee.value='female'){
+			this.style.backgroundColor='pink';
+		}
+	}
+
+	ad.update=function(observee){
+		if(observee.value=='male'){
+			this.innerHTML='汽车';
+		}else if(observee.value='female'){
+			this.innerHTML='减肥';
+		}
+	}	
+
+	//让content观察select的变化
+	sel.attach('content',content);
+	sel.attach('ad',ad);
+
+	var study=document.getElementById('study');
+	study.update=function(observee){
+		if(observee.value=='male'){
+			this.innerHTML='学习计算机';
+		}else if(observee.value='female'){
+			this.innerHTML='学习美容';
+		}
+	}
+	
+	function t1(){
+		sel.attach('study',study);
+	}
+
+	function t2(){
+		sel.detach('study');
+	}
+</script>
+</html>
