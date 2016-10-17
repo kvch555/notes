@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+
+// 函数声明,与函数表达式
+/*
+JS被称为披着C外衣的Lisp语言, 
+lisp是一种强大的函数式语言
+
+函数可以赋值给变量,可以作为参数来传递.
+*/
+
+function t1() {
+}
+
+t2 = function() {
+}
+
+// 这2种方式,效果不同的,
+// t1是函数声明, 虽然全局内也得到一个t1变量,值是function
+// 而t2 只是一个赋值过程------值是谁? 值是右侧的表达式的返回结果,即函数
+
+
+
+// 就是说 function () {} 在js看来,就和 3*2, 6/3 一样,是个表达式,返回一个结果
+
+// 因此,t1 t2 两种方式在词法分析时,有着本质区别
+// 前者 在词法分析阶段,就发挥作用
+// 而后者,在运行阶段,才发挥作用
+
+
+
+// 知道了函数表达式的概念,再看看一个你以前看不懂的东西
+(function(window,undefined) {
+})(window);
+
+这是jquery的最外层代码
+
+/*
+(function(window,undefined){})  // 内层表达式,返回值是函数,包在小括号里,当成表达式来执行\
+(function(window,undefined){})(window) // 立即调用
+
+// 而内层函数又没有起名字,称为匿名函数,
+// 这种手法,匿名函数,立即执行,不污染全局.   称为 立即执行匿名函数表达式
+
+*/
+
+// 思路: 为什么传window, 而又不会传undefined?
+/*
+答: 传window是为了速度
+
+function() {
+    function() {
+        function () {
+            function () {
+                function () {
+                    document.getElementById... // 这个document将会尚作用域层层上找，直到最外层
+                }
+            }
+        }
+    }
+}
+
+
+jquery就是为了加快内部查找变局变量的速度，　而直接把window以参数形式传进来
+这样 window 就在jquery内部的 AO上
+
+
+
+不传undefined是为了安全
+因为在IE,FF低版本中 ,  undefined竟然可以重新赋值 ,如 undefined = 3;
+
+
+声明undefined局部变量(名字是undefined而已), 同时,又不传参,值自然是undefined
+防止了外界对undefined的污染
+
+*/
+
+
+
+
+
+
+
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+    </body>
+</html>

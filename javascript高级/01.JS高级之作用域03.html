@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+
+function t1() {
+    var d;
+
+    function t2() {
+        d = 5;
+        e = 6;
+    }
+
+    t2();
+}
+
+
+t1();
+
+console.log(e); // 6
+console.log(d); // d is not defined错误
+console.log(window.d); // undefined
+
+/*
+注意:
+以window.xxx引用全局变量,寻找不到,做为某个属性不存在,返回undefined
+直接以xxx引用某命题,寻找不到,则是报xxx is not defined错误
+*/
+
+
+
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+    </body>
+</html>

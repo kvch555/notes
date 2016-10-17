@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+/**
+声明变量 var
+
+
+var 是在函数运行的上下文中,
+声明一个变量,
+
+如果不加var,则是一个赋值操作
+
+但不要狭隘的理解为--声明了一个全局变量(见03.html)
+
+**/
+
+alert(window.d); // undefine
+alert(window.e); // undefine
+
+function t() {
+    d = 5;
+    var e = 6;
+}
+
+
+t();   // d没有加var,仅仅是一个赋值操作, 寻找t域内的函数,没找到,继续寻找....>window, window.d=5
+
+alert(window.d); // ?
+alert(window.e);
+
+
+
+
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+
+/*
+作用域
+
+在JS中, 函数嵌套是非常普遍的,
+在函数嵌套中,
+
+对变量是如何寻找的?
+答: 首   先在函数内寻找
+寻找不到,则往外层寻找
+...
+直到.... 全局(window)区域
+
+*/
+
+var c = 5;
+
+function t1() {
+    var d = 6;
+
+    function t2() {
+        var e = 7;
+
+        // var d = 3;  注释再去掉注释,观察结果的变化
+
+        alert(c + d +e);
+    }
+
+    t2();
+}
+
+t1(); // 15, 18
+
+
+
+
+
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+    </body>
+</html>
