@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>编辑器介绍及百度编辑器引入</title>
+</head>
+<body>
+	<pre>
+		编辑器的一般学习步骤：
+		1.如何引入
+				引入eitor.config.js,eitor_all.js
+				var ue = UE.getEditor('good_desc');
+		2.如何个性化配置
+				var ue = UE.getEditor('good_desc',{
+					initialFrameWidth:700,
+					initialFrameHeight:500,
+					})
+		3.如何与自己的系统整合
+	</pre>
+<form action="02.php" method="post">
+<script id="good_desc" name="good_desc" type="text/plain">我才是初始值</script>
+<input type="submit" value="提交" />
+<input type="button" value="获取编辑器内容(ajax)" onclick="t1();" />
+<input type="button" value="获取编辑器纯文本" onclick="t2();" />
+</form>
+<script type="text/javascript" src="./ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="./ueditor/ueditor.all.js"></script>
+<script>
+	var ue = UE.getEditor('good_desc',{
+		initialFrameWidth:700,
+		initialFrameHeight:500,
+		}); 
+	
+	function t1(){
+		alert(ue.getContent());
+	}
+
+	function t2(){
+		alert(ue.getContentTxt());
+	}
+
+</script>
+</body>
+</html>
