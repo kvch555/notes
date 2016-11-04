@@ -1,0 +1,35 @@
+{config_load file="a.conf"}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+
+</script>
+
+<style type="text/css">
+{literal}table{background:blue;}{/literal}
+</style>
+</head>
+
+        <pre>
+        {literal}
+        如果smarty的标签的定界符 {}与css的{}冲突了
+        可以用如下2种办法来解决:
+        1:修改smarty默认定界符,如改成{>,<}
+
+        
+        2:也可以用literal标签,
+        来告诉smarty,此处照常输出,不用解析
+        literal在英语里,是"字面值,原义"的意思{/literal}
+        </pre>
+         <table>
+            <tr><td>姓名:</td><td>{$gy[0]}</td></tr>
+            <tr><td>年龄:</td><td>{$gy.1}</td></tr>
+            <tr><td>兵器:</td><td>{$gy.weapon}</td></tr>
+        </table>
+    </body>
+</html>
