@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+function chv(vcode) {
+    //var vcode = document.getElementsByTagName('img')[0];
+    vcode.src = vcode.src+'?_s='+Math.random();
+}
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+        <p>
+        验证码:<input type="text" name="vcode" /><img src="04.php" onclick="chv(this);" />
+        </p>
+
+        
+        <p>
+        验证码:<input type="text" name="vcode" /><img src="05.php" onclick="chv(this);" />
+        </p>
+    </body>
+</html>

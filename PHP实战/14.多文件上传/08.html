@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+        <h2>多文件上传的表单陷阱</h2>
+        <p>
+        有时,我们为了方便上传多文件,在name的命名上,采用数组形式来命名<br />
+        如pic[],pic[],pic[]
+        </p>
+        <form action="09.php" method="post" enctype="multipart/form-data">
+            用户名:<input type="text" name="username" value="张三" /><br />
+            头像:<input type="file" name="pic[0]" value="" /><br />
+            艳照:<input type="file" name="pic[1]" value="" /><br />
+            简历:<input type="file" name="pic[2]" value="" /><br />
+            <input type="submit" value="提交" />
+        </form>
+    </body>
+</html>

