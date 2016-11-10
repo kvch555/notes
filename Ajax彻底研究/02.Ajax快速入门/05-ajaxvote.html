@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+function createXHR() {
+    var xhr = null;
+    if(window.XMLHttpRequest) {
+        xhr = new XMLHttpRequest();
+    } else if(window.ActiveXObject) {
+        xhr = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+    return xhr;
+}
+
+
+function vote() {
+    // 1:制造xhr
+    var xhr = createXHR();
+
+    // 2: 打开连接
+    xhr.open('GET','./03-vote.php',true);
+
+    // 3: 发请求
+    xhr.send(null);
+
+
+    // 绑定状态变化的回调函数
+    xhr.onreadystatechange = function () {
+        if(this.readyState == 4) {
+            if(this.responseText == '1') {
+               document.getElementById('progress').innerHTML = '投票成功';
+            } else if(this.responseText == '0'){
+               document.getElementById('progress').innerHTML = '投票失败';
+            } else {
+               document.getElementById('progress').innerHTML = this.responseText;
+            }
+        }
+        /*var pg = document.getElementById('progress');
+        pg.innerHTML = pg.innerHTML + '状态现在变成' + this.readyState + '<br />';
+        */
+    }
+
+    alert('hello');
+
+}
+
+
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+        <div>
+        <p><img src="wmc.jpg" /><p>
+        <p><input type="button" value="投票方法2" onclick="vote();" /></p>
+        </div>
+        <div id="progress"></div>
+    </body>
+</html>
