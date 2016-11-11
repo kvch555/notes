@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+function createXHR() {
+    var xhr = null;
+    if(window.XMLHttpRequest) {
+        xhr = new XMLHttpRequest();
+    } else if(window.ActiveXObject) {
+        xhr = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+    return xhr;
+}
+
+
+// 1:制造xhr
+var xhr = createXHR();
+
+function vote() {
+
+    // 2: 打开连接
+    xhr.open('GET','./06-restest.php',true);
+
+    // 3: 发请求
+    xhr.send(null);
+
+
+    // 绑定状态变化的回调函数
+    xhr.onreadystatechange = function () {
+        if(this.readyState == 4 && this.status == 200) {
+            var str = '';
+            str = '状态码是' + this.status + '<br />';
+            str = str + '状态文字是' + this.statusText + '<br />';
+            str = str + '返回类型是:' + this.getResponseHeader('Content-Type') + '<br />';
+
+            str = str + '返回的主体长度是' + this.getResponseHeader('Content-Length') + '<br />';
+            str = str + '返回的主体内容是' + this.responseText + '<br />';
+
+            str = str + '所有头信息' + this.getAllResponseHeaders();
+            document.getElementById('progress').innerHTML = str;
+        }
+    }
+}
+
+function xhrstop() {
+    xhr.abort();
+}
+
+
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+        <div>
+        <p><img src="wmc.jpg" /><p>
+        <p><input type="button" value="测试各种返回值" onclick="vote();" /></p>
+        <p><input type="button" value="中断" onclick="xhrstop();" /></p>
+        </div>
+        <div id="progress"></div>
+    </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+function createXHR() {
+    var xhr = null;
+    if(window.XMLHttpRequest) {
+        xhr = new XMLHttpRequest();
+    } else if(window.ActiveXObject) {
+        xhr = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+    return xhr;
+}
+
+
+
+
+function ajaxreg() {
+    /*
+    步骤1: 打开到后台服务器连接(POST连接)
+    步骤2: 收集表单的数据
+    步骤3: 发送数据
+    步骤4: 监听,回调等
+    */
+
+
+    // 0:制造xhr
+    var xhr = createXHR();
+
+    // 1: 打开POST连接
+    xhr.open('POST','./07-ajaxreg.php',true);
+
+    xhr.onreadystatechange = function() {
+        if(this.readyState == 4) {
+            alert(this.responseText);
+        }
+    }
+
+
+
+    // 2: 收集表单数据
+    var un = document.getElementsByName('username')[0].value;
+    var eml = document.getElementsByName('email')[0].value;
+
+    // 3: send
+    //alert('username='+un+'&email=' + eml);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.send('username='+un+'&email=' + eml);
+
+
+    return false;
+}
+
+
+
+
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+        <h1>ajax注册</h1>
+        <div id="regres"></div>
+        <form action="07-ajaxreg.php" method="post" target="regzone" onsubmit="return ajaxreg();">
+            <p>用户名:<input type="text" name="username" /></p>
+            <p>邮件地址:<input type="text" name="email" /></p>
+            <p><input type="submit" name="注册" /></p>
+        </form>
+        <iframe width="0" height="0" frameBorder="0" name="regzone"></iframe>
+    </body>
+</html>
