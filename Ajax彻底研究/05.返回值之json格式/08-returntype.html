@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+
+function createXHR() {
+    var xhr = null;
+    if(window.XMLHttpRequest) {
+        xhr = new XMLHttpRequest();
+    } else if(window.ActiveXObject) {
+        xhr = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+    return xhr;
+}
+
+
+function test1() {
+    var xhr = createXHR();
+    xhr.open('GET','08-returntype.html',true);
+
+    xhr.onreadystatechange = function() {
+        if(this.readyState == 4) {
+            //alert(this.responseXML);
+            var xmldom = this.responseXML;
+            var chs = xmldom.getElementsByTagName('book')[0];
+            document.getElementById('btitle').value = chs.firstChild.firstChild.wholeText;
+            document.getElementById('bintro').value = chs.lastChild.firstChild.wholeText;
+        }
+    }
+
+    xhr.send(null);
+}
+
+
+function test2() {
+    var xhr = createXHR();
+    xhr.open('GET','08-returnhtml.php',true);
+
+    xhr.onreadystatechange = function() {
+        if(this.readyState == 4) {
+            document.getElementById('news').innerHTML = this.responseText;
+        }
+    }
+
+    xhr.send(null);
+}
+
+
+function test3() {
+    var xhr = createXHR();
+    xhr.open('GET','08-returnjson.php',true);
+
+    xhr.onreadystatechange = function() {
+        if(this.readyState == 4) {           
+            var book = eval('('+this.responseText+')');
+            document.getElementById('btitle').value = book.title;
+            document.getElementById('bintro').value = book.intro;
+
+        }
+    }
+
+    xhr.send(null);
+}
+
+
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+        书名:<input type="text" id="btitle" /><br />
+        简介:<input type="text" id="bintro" /><br />
+
+        <input type="button" value="测试返回XML" onclick="test1();" />
+        <input type="button" value="测试返回html代码" onclick="test2();" />
+        <input type="button" value="测试返回json格式" onclick="test3();" />
+
+        <div id="news">
+        </div>
+    </body>
+</html>
