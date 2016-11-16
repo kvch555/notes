@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+function sear() {
+    var kw = document.getElementsByName('keyword')[0].value;
+    var url = 'http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=' + kw + '&callback=aa';
+    
+    var scr = document.createElement('script');
+    scr.setAttribute('type','text/javascript');
+    scr.setAttribute('src',url);
+    
+    document.getElementsByTagName('head')[0].appendChild(scr);
+}
+
+function aa(res) {
+    console.log(res);
+    var results = res.responseData.results;
+
+/*title
+content
+url*/
+    //console.log(res);
+    var szone = document.getElementById('szone');
+    var str = '';
+    for(var i in results) {
+        //alert(i);
+        str += '<p>'+ results[i].title + '<p/>';
+        str += '<p>'+ results[i].content + '<p/>';
+        str += '<p>'+ results[i].url + '<p/>';
+    }
+
+    szone.innerHTML = str;
+}
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+        <input type="text" name="keyword" /><br />
+        <input type="button" value="搜索" onclick="sear();" />
+        <div id="szone">
+        </div>
+    </body>
+</html>
