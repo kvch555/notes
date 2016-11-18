@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+/*
+分析:
+1:捕捉表单提交的动作
+2:创建一个iframe
+3:把表单的 target修改 指向 该iframe
+4:去掉这个iframe
+*/
+
+function ajaxup() {
+    var ifname = 'up' + Math.random();
+    $('<iframe name="' + ifname + '" width="0" height="0" frameBorder="0"></iframe>').appendTo($('body'));
+    $('form:first').attr('target',ifname);
+    $('#progress').html('<img src="./loading.gif" />');
+    //return false;
+}
+
+</script>
+
+<style type="text/css">
+p{
+border: 1px solid gray;
+}
+</style>
+</head>
+    <body>
+        <h1>iframe模拟Ajax文件上传效果</h1> 
+        <h2></h2>
+        <div id="progress"></div>
+        <form action="up.php" method="post"  enctype="multipart/form-data" onsubmit="return ajaxup();">
+            <p>
+                <input type="file" name="pic" />
+            </p>
+            <p>
+                <input type="submit" value="提交" />
+            </p>
+        </form>
+    </body>
+</html>
