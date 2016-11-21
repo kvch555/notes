@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+/*
+formData "表单数据"对象
+这是在html5中新增的一个Api,
+他能以表单对象做参数,自动的把表单的数据打包.
+当ajax发送数据时,发送些formData,
+达到发送表单内各数据项的目的.
+*/
+
+function send() {
+    var fm = document.getElementById('tform');
+    var fd = new FormData(fm);
+    var fd2 = new FormData();
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST','02-testpost.php',true);
+
+    xhr.onreadystatechange = function () {
+        if(this.readyState == 4) {
+            document.getElementById('debug').innerHTML = this.responseText;
+        }
+    }
+    
+    //xhr.send(fd);
+
+    // 看下面这个例子,
+    // 说明formData对象既可以从表单生成数据,也可以手动的append
+    fd2.append('username','zhangsanm');
+    fd2.append('age',23);
+    xhr.send(fd2);
+
+}
+
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+        <form id="tform">
+           用户名:<input type="text" name="username" /><br />
+            年龄:<input type="text" name="age" /><br />
+            email:<input type="text" name="email" /><br />
+            性别:<input type="text" name="gender" /><br />
+            <input type="button" value="ajax发送" onclick="send();" />
+        </form>
+        <div id="debug"></div>
+    </body>
+</html>

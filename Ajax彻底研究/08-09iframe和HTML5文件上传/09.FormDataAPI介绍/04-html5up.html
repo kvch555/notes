@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+
+function selfile() {
+   // 创建FormData对象
+   var fd = new FormData();
+
+    // 获取文件对象
+   var pic = document.getElementsByTagName('input')[0].files[0];
+
+   // 把文件内容追加到表单数据里
+   fd.append('pic',pic);
+
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST','04-upfile.php',true);
+
+    xhr.onreadystatechange = function () {
+        if(this.readyState == 4) {
+            document.getElementById('debug').innerHTML = this.responseText;
+        }
+    }
+    
+    xhr.send(fd);
+
+
+}
+
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+        <input type="file" name="pic" onchange="selfile();" />
+        <div id="debug">
+        </div>
+    </body>
+</html>

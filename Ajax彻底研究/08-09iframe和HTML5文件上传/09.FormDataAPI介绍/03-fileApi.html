@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+
+function selfile() {
+   var pic = document.getElementsByTagName('input')[0].files[0];
+   console.log(pic);
+    var debug = document.getElementById('debug');
+    var cont = '';
+    cont += '文件名称:' + pic.name + '<br />';
+    cont += '文件大小' + pic.size + '<br />';
+    debug.innerHTML = cont;
+
+    var tmpimg = document.createElement('img');
+    tmpimg.src = window.URL.createObjectURL(pic); // 把二进制对象直接读成浏览器显示的资源
+    document.getElementsByTagName('body')[0].appendChild(tmpimg);
+
+}
+
+</script>
+
+<style type="text/css">
+img {
+width:500px;
+}
+</style>
+</head>
+    <body>
+        <input type="file" name="pic" onchange="selfile();" />
+        <div id="debug">
+        </div>
+    </body>
+</html>

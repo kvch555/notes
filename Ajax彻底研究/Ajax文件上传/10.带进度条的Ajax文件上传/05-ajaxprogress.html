@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+/*
+
+分析: 
+进度条需要2个最基础的信息--- 总大小,已上传大小
+解决: 在html5,有一个"上传过程"的事件--onprogress
+事件中可以读到这2个信息.
+
+具体思路:
+在上传过程中,不断的触发函数,函数读取已上传/总大小
+总更新页面的进度条.
+*/
+
+function selfile() {
+   // 创建FormData对象
+   var fd = new FormData();
+
+    // 获取文件对象
+   var pic = document.getElementsByTagName('input')[0].files[0];
+
+   // 把文件内容追加到表单数据里
+   fd.append('pic',pic);
+
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST','http://www.yanshiba.com/upload.php',true); 
+    
+
+    // 利用XHR2的新标准,为上传过程,写一个监听函数
+    xhr.upload.onprogress = function (ev) { 
+       if(ev.lengthComputable) {
+          var percent = 100 * ev.loaded/ev.total;
+          //console.log(percent);
+          document.getElementById('bar').style.width = percent + '%';
+          document.getElementById('bar').innerHTML = parseInt(percent) + '%';
+       }
+    }
+
+
+    xhr.send(fd);
+}
+
+</script>
+
+<style type="text/css">
+#progress{
+width:500px;
+height:30px;
+border:1px solid green;
+}
+
+#bar {
+width: 0%;
+height:100%;
+background:green;
+}
+
+</style>
+</head>
+    <body>
+        <h1>html5进度条文件上传</h1>
+        <div id="progress">
+            <div id="bar"></div>
+        </div>
+        <input type="file" name="pic" onchange="selfile();" />
+    </body>
+</html>
