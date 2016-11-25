@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+/*
+用到的API
+file-->继承自-->Blob
+Blob有slice方法,可以截取二进制对象的一部分.
+
+思路:
+截取10M, 上传
+判断文件有没有截取完毕
+
+while 还有数据
+{
+    截取,
+    Ajax上传
+}
+*/
+
+function sendfile() {
+    const LENGTH = 10 * 1024 * 1024;
+    var sta = 0;
+    var end = sta + LENGTH;
+    var blob = null;
+    var fd = null;
+
+    /*
+        xhr 对象
+    */
+    var xhr = null;
+
+    var mov = document.getElementsByName('mov')[0].files[0];
+    //console.log(mov);return;
+    
+    var totalsize = mov.size;
+    var percent = 0;
+
+    while(sta < totalsize) {
+        blob = mov.slice(sta,end);
+        fd = new FormData();
+        fd.append('part',blob);
+
+        xhr = new XMLHttpRequest();
+        xhr.open('POST','06-sliceup.php',false);
+
+        xhr.send(fd);
+
+        sta = end;
+        end = sta + LENGTH; 
+
+        percent = 100 * end / totalsize;
+        if(percent > 100) {
+            percent = 100;
+        }
+        document.getElementById('bar').style.width = percent + '%';
+        document.getElementById('bar').innerHTML = parseInt(percent) + '%';
+    }
+
+}
+
+
+</script>
+
+<style type="text/css">
+#progress{
+width:500px;
+height:30px;
+border:1px solid green;
+}
+
+#bar {
+width: 0%;
+height:100%;
+background:green;
+}
+
+</style>
+</head>
+    <body>
+        <h1>html5大文件切割上传</h1>
+        <div id="progress">
+            <div id="bar"></div>
+        </div>
+        <input type="file" name="mov" onchange="sendfile();" />
+    </body>
+</html>
