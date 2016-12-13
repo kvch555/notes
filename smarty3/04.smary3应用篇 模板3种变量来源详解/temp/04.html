@@ -1,0 +1,41 @@
+{config_load file='site.conf'}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+        <pre>
+        $smarty.开头的标签,当成系统变量来解析
+        如$smarty.get.id,解析成<?php echo $_GET['id'];?>
+        还有$smarty.post,$smarty.session, $smarty.cookies
+
+        注意:要是想显示一个常量,又该如何? $smarty.const.常量名
+        </pre>
+        <h2>{$name}</h2>
+        <p>{$poem}</p>
+        <p>{$id}</p>
+        <p>{$smarty.get.id}</p>
+        <p>{$smarty.const.HEI}</p>
+
+        <div>
+            <p>
+            {$smarty.config.site}
+            </p>
+            <p>
+            用#号也能读配置文件的值
+            {#hao#}
+            </p>
+            <p>电话{#tel#}</p>
+        </div>
+    </body>
+</html>
