@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>新建网页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script type="text/javascript">
+
+</script>
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+        <pre>
+            对象的引用是$标签->属性名
+            还可以调用对象的方法,如何调用?
+            $标签->method();
+
+            但是!!!!!!
+            我们回想设计模板时的初衷,是为了什么?
+            就是为了分离PHP与HTML代码,让代码简洁
+
+            所以,模板中的标签,应该尽量的是,只负责变量的输出.
+            就是负责显示数据的,不要负责太多的逻辑判断,函数调用等.
+
+            所以我们不推荐在模板里调用函数和方法
+        </pre>
+        <h2>{$man->name} {$man->age}岁</h2>
+        <p>张三说:{$man->say()}</p>
+    </body>
+</html>
