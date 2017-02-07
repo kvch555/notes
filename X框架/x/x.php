@@ -7,7 +7,7 @@ class X{
 		'Model'=>X_PATH.'lib/Model.php',
 	];
 
-	//自定义自动加载
+	//自定义自动调用
 	public static function auto($classname){
 		//判断加载基类
 		if(isset(self::$map[$classname])){
