@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="变" onclick="bian();">
+    <ul>
+        <li><a href="">导航1</a></li>
+        <li><a href="">导航2</a></li>
+        <li><a href="">导航3</a></li>
+        <li><a href="">导航4</a></li>
+    </ul>
+</body>
+<script>
+    //alert(document.getElementsByTagName('ul')[0].innerHTML);
+    function bian() {
+        var lis = '<li>春</li><li>夏</li><li>秋</li><li>冬</li>';
+        document.getElementsByTagName('ul')[0].innerHTML = lis;
+    }
+</script>
+</html>

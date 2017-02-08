@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+/*
+    var a = 3;  // 声明变量a,并赋值为3
+    b = 4; // 把变量b,赋值为4. 要是此时没有变量b怎么办?
+*/
+
+console.log(window.a); // undefined
+console.log(window.b); // undefined
+
+function t(){
+    var a = 'scope';
+    b = 'global';
+
+    function t2(){
+        c = 3;
+    }
+
+    t2();
+}
+
+t();
+
+console.log(window.a); // undefind
+console.log(window.b); // global
+console.log(window.c); // 3
+
+</script>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="添加冬" onclick="jia();">
+    <ul>
+        <li>春</li>
+        <li>夏</li>
+        <li>秋</li>
+    </ul>
+</body>
+<script>
+function jia() {
+    var li = document.createElement('li');
+    var dong = document.createTextNode('冬');
+    li.appendChild(dong);
+
+    var ul = document.getElementsByTagName('ul')[0];
+    ul.appendChild(li);
+}
+</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <select name="pro" id="pro" onchange="bian();">
+        <option value="">请选择省</option>
+        <option value="1">北京</option>
+        <option value="2">安徽</option>
+    </select>
+    <select name="city" id="city"></select>
+</body>
+<script>
+function bian() {
+    //alert('s');
+    var map = ['',['海淀','昌平','朝阳','通州'] , ['淮北','淮南','安庆','合肥']];
+    var pro = document.getElementById('pro');
+    var city = document.getElementById('city');
+    //alert(map[pro.value]);
+    
+    var citys = map[pro.value];
+
+    for(var i=0,len=citys.length,str=''; i<len; i++) {
+        str = str + '<option>' + citys[i] + '</option>';
+    }
+
+    city.innerHTML = str; 
+    
+}
+</script>
+</html>

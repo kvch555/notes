@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test1" onclick="bian()" style="width:200px;height:200px;border:1px solid blue">
+</body>
+<script>
+function bian() {
+    //alert('s');
+    var test1 = document.getElementById('test1');
+    // js中,把字符串转成数字, parseInt   
+    var w = parseInt(test1.style.width);
+    var h = parseInt(test1.style.height);
+    var b = parseInt(test1.style.borderBottomWidth);
+
+    test1.style.width = w + 10 + 'px';
+    test1.style.height = h + 10 + 'px';
+    test1.style.borderBottomWidth = b + 1 + 'px';
+}
+</script>
+</html>

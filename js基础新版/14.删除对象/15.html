@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="删除冬" onclick="shan();">
+    <input type="button" value="删除最后一个" onclick="last();">
+    <ul>
+        <li>春</li>
+        <li>夏</li>
+        <li>秋</li>
+        <li>冬</li>
+    </ul>
+</body>
+<script>
+function shan() {
+    /*
+    //alert('s');
+    var dong = document.getElementsByTagName('li')[3];
+    var ul = dong.parentNode;
+    ul.removeChild(dong);*/
+
+
+    var ul = document.getElementsByTagName('ul')[0];
+    var li = ul.children[3];
+    ul.removeChild(li); 
+}
+
+
+function last() {
+    var ul = document.getElementsByTagName('ul')[0];
+    var li = ul.children[ul.children.length-1];
+    ul.removeChild(li);
+}
+
+</script>
+</html>

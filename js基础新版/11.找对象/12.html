@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>关键是找对象</h1>
+    <div id="test1">
+        <p>p1</p>
+        <p>p2</p>
+        <p>p3</p>
+    </div>
+    <div class="test2">kjdsafjkdlsfaj</div>
+    <input type="text" name="username" id="" value="poly" />
+</body>
+<script>
+// 接id找对象
+var test1 = document.getElementById('test1');
+console.log(test1);
+
+// 按标签名找对象
+var hs= document.getElementsByTagName('h1');
+console.log(hs);
+
+// 对于表单项,可以按表单的name
+var us = document.getElementsByName('username');
+console.log(us);
+us[0].value='lucy';
+
+// 按照类名来查找
+var cs = document.getElementsByClassName('test2');
+console.log(cs);
+
+// 找一个元素的子元素
+// 从DOM的角度看,一切皆节点,标签<p></p>,属性src="", 文本, 空白, <!--注释-->
+console.log(test1.childNodes.length);
+console.log(test1.children); // children虽然不是标准属性,但是各浏览器都支持.
+
+// 找父节点
+var p3 = document.getElementsByTagName('p')[2];
+console.log(p3.parentNode);
+
+p3.parentNode.style.borderBottom = '1px solid blue';
+</script>
+<style>
+
+</style>
+</html>

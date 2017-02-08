@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script>
+var a = 3;
+var b = 2;
+console.log(a%b); // 取模 1
+
+if(a >= b) {
+    console.log('a > b');
+} else {
+    console.log('a < b');
+}
+
+console.log('hello' + 3 + 'world');
+// 遇到非法数字时,后面的"+",全理解为拼接
+console.log(3 + 2 + 'hello' + 4 + 5 + 'world');
+
+
+// 返回,当整个表达式能出结果时的那个子表达式的值
+var c = 4;
+var d = 9;
+console.log(c || d);
+console.log(c && d);
+
+var e = 0;
+var f = 99;
+console.log(e || f);
+console.log(e && f);
+
+/*
+IE , ff
+ev = event|| ev;
+*/
+
+
+</script>
+<body>
+    
+</body>
+</html>

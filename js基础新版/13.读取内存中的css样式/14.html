@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#test1{
+    width:200px;height:200px;border:1px solid blue;
+}
+</style>
+</head>
+<body>
+    <h1>获取内存中计算后的最终css样式</h1>
+    <div id="test1" onclick="bian()">
+</body>
+<script>
+function getStyle(el , attr) {
+    return el.currentStyle ? el.currentStyle[attr] : getComputedStyle(el,null)[attr];
+}
+
+var test1 = document.getElementById('test1');
+
+//alert(getStyle(test1,'borderBottom'));
+
+
+function bian() {
+    //alert('s');
+    var test1 = document.getElementById('test1');
+    // js中,把字符串转成数字, parseInt   
+    var w = parseInt(getStyle(test1 , 'width'));
+    var h = parseInt(getStyle(test1 , 'height'));
+    var b = parseInt(getStyle(test1,'borderBottomWidth'));
+
+    test1.style.width = w + 10 + 'px';
+    test1.style.height = h + 10 + 'px';
+    test1.style.borderBottomWidth = b + 1 + 'px';
+}
+</script>
+</html>
