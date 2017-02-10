@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+#cont {
+    margin-top:100px;
+    width: 400px;
+    height: 400px;
+    border:1px solid blue;
+    position: relative;
+}
+
+#main {
+    width: 400px;
+    height: 400px;
+    border:1px solid red;
+    position: relative;
+    top:-100px;
+}
+
+.row {
+    height: 100px;
+}
+
+.row div {
+    width: 98px;
+    height: 98px;
+    border:1px solid gray;
+    float: left;
+}
+
+.black {
+    background: black;
+}
+
+</style>
+<body>
+    <h1>别踩白块第4步:白块循环出现</h1>
+    <div id="cont">
+        <div id="main"></div>
+    </div>
+</body>
+<script>
+var main = document.getElementById('main');
+
+function getStyle(el , attr) {
+    return el.currentStyle ? el.currentStyle[attr] : getComputedStyle(el,null)[attr];
+}
+
+// 造div
+function cDiv(className) {
+    var div = document.createElement('div');    
+    
+    if(className) {
+        div.className = className;    
+    }
+
+    return div;
+}
+
+
+// 造一行,即连造4个小div
+function cRow() {
+    // 造一个0-3之间的随机数
+    var ind = Math.floor(Math.random()*4);
+
+    // 造一个行div
+    var row = cDiv('row');
+
+    for(var i=0; i<4; i++) {
+        if(i == ind) {
+            row.appendChild(cDiv('black'));
+        } else {
+            row.appendChild(cDiv());
+        }
+    }
+
+    // 把行row塞到main里
+    if(main.firstChild) {
+        main.insertBefore(row , main.firstChild);
+    }else {
+        main.appendChild(row);
+    }
+}
+
+function move() {
+    var top = getStyle(main , 'top');
+    top = parseInt(top) + 2;
+
+    main.style.top = top + 'px'
+    if(top == 0){
+        cRow();
+        main.style.top = '-100px';
+    }
+
+    if(main.children.length>5) {
+        main.removeChild(main.lastChild);
+    }
+}
+
+function init() {
+    for(var i=0; i<4; i++) {
+        cRow();
+    }
+
+    window.setInterval('move();' , 40);
+}
+
+init();
+
+</script>
+</html>
