@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>学话</h1>
+    <p>原话:<input type="text" name="origin" oninput="copy();"></p>
+    <p>模仿:<input type="text" name="copy"></p>
+</body>
+<script>
+function copy() {
+    var inps = document.getElementsByTagName('input');
+    inps[1].value = inps[0].value;
+}
+</script>
+</html>

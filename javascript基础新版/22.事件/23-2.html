@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>找我,我就嫁给你</h1>
+    <img src="mn.png" alt="" onmouseover="marry();" onmouseout="bian();">
+</body>
+<script>
+function marry() {
+    var img = document.getElementsByTagName('img')[0];
+    img.src = './lyf.jpg';
+}
+
+function bian() {
+    var img = document.getElementsByTagName('img')[0];
+    img.src = './mn.png';
+}
+</script>
+</html>

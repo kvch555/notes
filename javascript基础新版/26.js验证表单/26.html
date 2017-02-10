@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+        <p>用户名<input type="text" name="username" >5-16位字母数字_组成</p>
+        <p>Email<input type="text" name="email"></p>
+        <p>密码<input type="text" name="password">至少6位</p>
+        <p>确认密码<input type="text" name="repassword"></p>
+        <p><input type="submit" value="提交注册"></p>
+    </form>
+</body>
+<script>  
+var fm = document.getElementsByTagName('form')[0];
+fm.onsubmit = function() {
+    var inps = document.getElementsByTagName('input');
+
+    var patt = /^\w{5,16}$/;
+    if(!patt.test(inps[0].value)) {
+        alert('用户名5-16位字母数字_组成');
+        return false;
+    }
+
+    patt = /^\w+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9]+)+/;
+    if(!patt.test(inps[1].value)) {
+        alert('email不正确');
+        return false;
+    }    
+
+    if(inps[2].value.length<6) {
+        alert('密码太短');
+        return false;
+    }
+
+    if(inps[3].value != inps[2].value) {
+        alert('两次密码不一致');
+        return false;
+    }
+}
+</script>
+</html>

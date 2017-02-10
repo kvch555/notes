@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+    <p>用户名:<input type="text" onfocus="f1();" onblur="f2();" /></p>
+    <p>Email: <input type="text" /></p>
+    <p>密码:<input type="text" /></p>
+    </form>
+</body>
+<script>
+var inps = document.getElementsByTagName('input');
+function f1(){
+    inps[0].style.background='gray';
+}
+
+function f2() {
+    inps[0].style.background = 'green';
+}
+</script>
+</html>

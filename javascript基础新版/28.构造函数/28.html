@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+// 构造函数
+function Dog() {
+    this.name = 'xiaotian';
+    this.leg = 4;
+    this.bark = function() {
+        alert('旺旺');
+    }
+}
+/*
+1. 函数制造一个空对象 {}
+2. this---指向--->该空对象{}
+3. 执行函数语句, {}.name='xiao',{}.leg=4..
+4. 返回该对象
+*/
+var dog = new Dog();
+console.log(dog);
+
+// 不要直接运行构造函数,否则会__污染全局____
+/*
+Dog(); 直接运行,this为空,指向null
+对于this为null,js会理解为window
+最终 window.name = 'xiaotian';
+...
+
+最新的js标准中,不再理解为window,而是抛出错误信息
+*/
+
+Dog();
+</script>
+</html>

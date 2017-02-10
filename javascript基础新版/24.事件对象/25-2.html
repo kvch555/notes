@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>点到就嫁给你</h1>
+    <img src="./mn.png" alt="" style="position:relative;top:0px;left:0px">
+</body>
+<script>
+var img = document.getElementsByTagName('img')[0];
+img.onclick = function() {
+    alert('嫁给你了');
+}
+
+img.onmouseover = function(ev) {
+    img.style.left = ev.pageX + 130 + 'px'; 
+    img.style.top = ev.pageY + 130 + 'px';
+}
+
+</script>
+</html>

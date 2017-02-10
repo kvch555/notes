@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <img src="./bom.jpg" alt="">
+</body>
+<script>
+function bao() {
+    var img = document.getElementsByTagName('img')[0];
+    img.src = './warn.jpg';
+}
+
+// 第1个参数代表要执行的语句, 第2个参数代表多长时间后执行(毫秒为单位)
+// setTimeout不是js的功能,由window对象提供的
+window.setTimeout('bao()' , 3000);
+</script>
+</html>

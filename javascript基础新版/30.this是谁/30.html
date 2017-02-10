@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>this指谁?</h1>
+</body>
+<script>
+function t() {
+    alert(this.name);
+}
+
+
+window.name = 'itbool';
+// t();
+
+var Dog = {
+    name:'xiaotian',
+    leg:4
+}
+
+var Cat = {
+    name:'加肥猫',
+}
+
+Dog.bark = t;
+Dog.bark(); // xiaotian
+
+
+Cat.intro = Dog.bark;
+Cat.intro(); // 加肥
+
+
+(Dog.xx = Cat.intro)();
+</script>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+div {
+    width: 300px;
+    height: 300px;
+    border: 1px solid blue;
+}
+</style>
+<body>
+    <div></div>
+</body>
+<script>
+var div = document.getElementsByTagName('div')[0];
+div.onclick = function(ev) {
+    ev = ev || window.event; // 后半句兼容IE9以下
+}
+</script>
+</html>
