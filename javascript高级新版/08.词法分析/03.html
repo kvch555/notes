@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+function t(age){
+	var age=5;
+	console.log(age);
+}
+
+t(99);
+
+//词法分析，参数，var声明，函数声明
+/*
+0.函数运行瞬间，会此函数生成一个Active Object，AO活动对象
+	{一个函数作用域内能找到的所有变量，都在AO上}
+
+	分析结果：t.AO={};
+
+1.接收参数，以参数名为属性，参数值为属性值
+	t.AO={age:99};	
+
+2.分析var声明，在AO上，形成一个属性，以var的变量名为属性名，值为undefined
+	如果AO对象上，也有同名属性，不做任何影响
+
+3.分析函数声明，略过
+
+最终：t.AO={age:99};
+*/
+
+/*
+执行
+t.AO.age=5;
+*/
+</script>
+</html>

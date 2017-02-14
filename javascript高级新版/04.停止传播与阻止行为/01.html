@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<style>
+#china{
+	width: 500px;
+	height: 500px;
+}
+
+div{
+	width: 80%;
+	height: 80%;
+	border: 1px solid gray;
+	margin:10%;
+}
+
+</style>
+<body>
+	<div id="china">china
+		<div id="bj">bj
+			<div id="hd">
+			hd
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+var china=document.getElementById('china');
+var bj=document.getElementById('bj');
+var hd=document.getElementById('hd');
+
+china.addEventListener('click',function(){alert('b-china');},true)//第三个参数表示是否捕捉，默认是false，冒泡
+bj.addEventListener('click',function(ev){
+	alert('b-bj');
+	ev.stopPropagation();  //阻止事件的传播
+},true)
+hd.addEventListener('click',function(){alert('b-hd');},true)
+
+china.addEventListener('click',function(){alert('m-china');},false)//第三个参数表示是否捕捉，默认是false，冒泡
+bj.addEventListener('click',function(){alert('m-bj');},false)
+hd.addEventListener('click',function(){alert('m-hd');},false)
+</script>
+</html>

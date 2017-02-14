@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+var age=23;
+function t1(){
+	var age=77;
+	function t2(){
+		function t3(){
+			console.log(age);
+		}
+		t3();
+	}
+	t2();
+}
+
+t1();	//最后结果是77，变量从本函数再向外面找的。
+
+</script>
+</html>
