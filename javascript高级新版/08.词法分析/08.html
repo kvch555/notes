@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+function a(b){
+	alert(b);
+	var b=function(){
+		alert(b);
+	}
+	b();
+}
+
+a(1);
+
+/*
+分析过程
+
+0. a.AO={};
+1.分析参数，a.AO={b:1}
+2.分析var，b已存在，不做任何影响
+3.分析函数声明	略过  
+执行
+12行 alert(b); //结果   1;
+13行，b=function(){},被赋值
+		a.AO={b:function(){ }}
+
+分析内层b函数
+0.b.AO={};
+1.分析参数，略过，
+2.分析var，略过，
+3.分析函数声明，略过。
+
+执行
+14行，alert(b); b.AO={}; //找上一层a.AO={b:function(){alert(b)}};  //结果：function(){alert(b)};
+*/
+</script>
+</html>
