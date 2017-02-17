@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+function add(a,b){
+	var rs=a+b;
+	console.log(rs);
+}
+
+add(3,4,5);
+
+function sum(){
+	//console.log(arguments);
+	for(var sum=0,i=0;i<arguments.length; i++){
+		sum=sum+arguments[i];
+	}
+	console.log(sum);
+}
+sum(1);
+sum(1,2);
+sum(1,2,3);
+sum(1,2,3,4);
+
+</script>
+</html>

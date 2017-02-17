@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+/*function add(a,b){
+	console.log(arguments.callee);
+}
+
+add(3,4,5);*/
+
+//匿名函数递归求1到100的和
+var rs=(function (n){
+	if(n>1){
+		return n+arguments.callee(n-1);
+	}else{
+		return 1;
+	}
+})(100)
+
+console.log(rs);
+
+</script>
+</html>
